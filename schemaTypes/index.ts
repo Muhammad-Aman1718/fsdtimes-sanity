@@ -1,3 +1,4 @@
-import {postType} from './postType'
+import {category} from './category'
+import {posts} from './posts'
 
-export const schemaTypes = [postType]
+export const schemaTypes = [posts, category]
