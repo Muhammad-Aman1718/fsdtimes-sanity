@@ -34,8 +34,6 @@
 //   ],
 // })
 
-
-
 import {defineType, defineField} from 'sanity'
 
 export const posts = defineType({
@@ -47,37 +45,42 @@ export const posts = defineType({
       name: 'title',
       title: 'Article Title',
       type: 'string',
-      validation: (Rule) => Rule.required()
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
       title: 'URL Slug',
       type: 'slug',
-      options: {source: 'title'}
+      options: {source: 'title'},
     }),
     defineField({
       name: 'content',
       title: 'Content',
       type: 'array',
-      of: [{type: 'block'}]
+      of: [{type: 'block'}],
     }),
     defineField({
       name: 'category',
       title: 'Category',
       type: 'reference',
-      to: [{type: 'category'}]
+      to: [{type: 'category'}],
+    }),
+    defineField({
+      name: 'readingTime',
+      title: 'Estimated Reading Time',
+      type: 'string',
     }),
     defineField({
       name: 'publishedAt',
       title: 'Publish Date',
       type: 'datetime',
-      initialValue: () => new Date().toISOString()
+      initialValue: () => new Date().toISOString(),
     }),
     defineField({
       name: 'isPublished',
       title: 'Publish Status',
       type: 'boolean',
-      initialValue: false
-    })
-  ]
+      initialValue: false,
+    }),
+  ],
 })
