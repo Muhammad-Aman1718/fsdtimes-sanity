@@ -24,9 +24,8 @@
 
 
 
-
 // schemas/category.js
-import {defineType, defineField} from 'sanity'
+import { defineType, defineField } from 'sanity';
 
 export const category = defineType({
   name: 'category',
@@ -37,34 +36,20 @@ export const category = defineType({
       name: 'title',
       title: 'Category Name',
       type: 'string',
-      validation: Rule => Rule.required()
+      validation: Rule => Rule.required().max(30)
     }),
     defineField({
       name: 'slug',
       title: 'URL Slug',
       type: 'slug',
-      options: {source: 'title'},
+      options: { source: 'title' },
       validation: Rule => Rule.required()
-    }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-      rows: 3,
-      validation: Rule => Rule.max(160).warning('SEO ke liye concise rakhein')
-    }),
-    defineField({
-      name: 'seoImage',
-      title: 'SEO Image',
-      type: 'image',
-      options: {hotspot: true}
     })
   ],
   preview: {
     select: {
       title: 'title',
-      subtitle: 'description',
-      media: 'seoImage'
+      subtitle: 'slug.current'
     }
   }
-})
+});
